@@ -13,5 +13,16 @@ conn.on("connect", () => {
 
   conn.write("Name: MJD");
 
+  
+});
+
+conn.on("connect", () => {
+
+  // for (let i = 1; i < 40; i++) {
+
+  //   setTimeout(() => {
+  //     conn.write("Move: up");
+  //   }, 50 * i) 
+  // }
 
 });
