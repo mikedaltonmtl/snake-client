@@ -1,47 +1,30 @@
-// Stores the active TCP connection object.
-let connection;
+const { ENCODING, KEYMAPPINGS } = require("./constants");
+
+let connection; // Stores the active TCP connection object
 
 // setup interface to handle user input from stdin
 const setupInput = function(conn) {
-
   connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
-  stdin.setEncoding("utf8");
+  stdin.setEncoding(ENCODING);
   stdin.resume();
   stdin.on("data", handleUserInput); // add event listener
-
+  connection.on('close', () => process.exit()); // exit if server closes connection (you die)
   return stdin;
 };
 
-// event handler
+// event handler for user keyboard input
 const handleUserInput = function(key) {
-
+  
   // \u0003 maps to ctrl+c input
   if (key === '\u0003') {
     process.exit();
   }
 
-  // map the WASD movement keys
-  switch (key) {
-  case 'w' :
-    connection.write("Move: up");
-    break;
-  case 'a' :
-    connection.write("Move: left");
-    break;
-  case 's' :
-    connection.write("Move: down");
-    break;
-  case 'd' :
-    connection.write("Move: right");
-    break;
-  case 'h' :
-    connection.write("Say: Hello!");
-    break;
-  case 'b' :
-    connection.write("Say: Goodbye!");
-    break;
+  // send key mapping commands to server
+  if (KEYMAPPINGS[key]) {
+    connection.write(KEYMAPPINGS[key]);
   }
 };
 
