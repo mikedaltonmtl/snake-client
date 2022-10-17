@@ -16,14 +16,8 @@ conn.on("connect", () => {
   conn.write(`Name: ${PLAYER}`); // transmit to game server
 });
 
-setupInput(conn); // user input interface
-
-/*
-conn.on("connect", () => {
-  for (let i = 1; i < 40; i++) {
-    setTimeout(() => {
-      conn.write("Move: up");
-    }, 50 * i)
-  }
+conn.on("newPlayer", () => {
+  console.log("Successfully heard broadcast");
 });
-*/
+
+setupInput(conn); // user input interface

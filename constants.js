@@ -1,9 +1,9 @@
-const IP = 'localhost'; // IP address of the game server
-const PORT = 50541;     // PORT to use on the game server
-const ENCODING = "utf8" // type of encoding to use
+const IP = 'localhost';  // IP address of the game server
+const PORT = 50541;      // PORT to use on the game server
+const ENCODING = "utf8"; // type of encoding to use
 
 // if user provides valid argument (<= 3 chars) use given name, or use as default
-const PLAYER = process.argv.length > 2 && process.argv[2].length <=3 ? process.argv[2] : 'SNK';
+const PLAYER = process.argv.length > 2 && process.argv[2].length <= 3 ? process.argv[2] : 'SNK';
 
 const KEYMAPPINGS = {
   // movement
@@ -21,7 +21,7 @@ const KEYMAPPINGS = {
 module.exports = {
   IP,
   PORT,
-  PLAYER,
   ENCODING,
+  PLAYER,
   KEYMAPPINGS,
 };

@@ -18,14 +18,10 @@ const setupInput = function(conn) {
 const handleUserInput = function(key) {
   
   // \u0003 maps to ctrl+c input
-  if (key === '\u0003') {
-    process.exit();
-  }
+  if (key === '\u0003') process.exit();
 
   // send key mapping commands to server
-  if (KEYMAPPINGS[key]) {
-    connection.write(KEYMAPPINGS[key]);
-  }
+  if (KEYMAPPINGS[key]) connection.write(KEYMAPPINGS[key]);
 };
 
 module.exports = setupInput;
